@@ -3,8 +3,8 @@ var app = express();
 
 var Parse = require('parse').Parse;
 
-// Parse.initialize(process.env.PARSE_APP_ID,process.env.PARSE_SECRET);
-Parse.initialize('3agAESVWJ46UPAG6wGuh0utwQe5pm3reUeWvbw0L','xDMSVh5xuIgJ26EDF1R3uHZ9tEc8fOlaU78uowPR');
+Parse.initialize(process.env.PARSE_APP_ID,process.env.PARSE_SECRET);
+// Parse.initialize('3agAESVWJ46UPAG6wGuh0utwQe5pm3reUeWvbw0L','xDMSVh5xuIgJ26EDF1R3uHZ9tEc8fOlaU78uowPR');
 
 
 
