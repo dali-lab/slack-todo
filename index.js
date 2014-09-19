@@ -29,10 +29,13 @@ app.post('/', function(req,res){
 	  alert("yay! it worked");
 	});
 	
-	
+	var user_id = req.body.user_id;
 	var text = req.body.text;
 	if( text =='help') {		
 		res.send('/lights commands: on, off, random, very dim, dim, shady, bright, very bright, blue, green, orange, purple, normal, colors, sauron, party, pulse, pulses tv');	
+	}
+	else if( text =='user') {		
+		res.send(user_id);	
 	}
 	else{
 		res.send('RAWR');	
