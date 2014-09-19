@@ -23,11 +23,11 @@ app.listen(app.get('port'), function() {
 
 app.post('/', function(req,res){
 	
-	var TestObject = Parse.Object.extend("Tester");
-	var testObject = new TestObject();
-	testObject.save({foo: "baretto"}).then(function(object) {
-	  alert("yay! it worked");
-	});
+	// var TestObject = Parse.Object.extend("Tester");
+	// var testObject = new TestObject();
+	// testObject.save({foo: "baretto"}).then(function(object) {
+	//   alert("yay! it worked");
+	// });
 	
 	var user = req.body.user_id;
 	var text = req.body.text;
