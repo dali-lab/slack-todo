@@ -22,39 +22,36 @@ app.listen(app.get('port'), function() {
 })
 
 
-function listForUserFromParse(user){
-	
+function listItemsFromParseForUser(user){
+
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
 	// query.include("message");
 	query.find({
 	  success: function(results) {
 	    // results is an array of Parse.Object.
-		return results;
+		var list = "";			
+		for (i = 0; i < results.length; i++) {
+			list += i;
+			list += '. ';
+			list += results[i].get("message");
+			list += '\n';
+
+		}
+		res.send(list);	
+		
 	  },
 
 	  error: function(error) {
-  		return error;
+		res.send(error);	
+		  
 	    // error is an instance of Parse.Error.
 	  }
 	});
 	
-}
-
-function sendList(user){
-
-	var results = listForUserFromParse(user);
-	var list = "";			
-	for (i = 0; i < results.length; i++) {
-		list += i;
-		list += '. ';
-		list += results[i].get("message");
-		list += '\n';
-	}
-	return list;	
+	
 	// return "test";
 }
-
 
 app.post('/', function(req,res){
 		
@@ -68,7 +65,7 @@ app.post('/', function(req,res){
 
 	if(itemIsDone) {	
 		
-		res.send(sendList(user));		
+		res.send(listItemsFromParseForUser(user));		
 		res.send(""+firstInt);	
 	}
 	if( text =='help') {		
@@ -76,7 +73,7 @@ app.post('/', function(req,res){
 	}
 	else if(text =='what' || text == '') {	
 		
-		res.send(sendList(user));
+		res.send(listItemsFromParseForUser(user));
 		
 	}
 	else if( text =='user') {		
@@ -93,7 +90,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-		res.send(sendList(user));	
+		res.send(listItemsFromParseForUser(user));	
 	}
 	
 });
