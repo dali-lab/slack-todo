@@ -21,6 +21,35 @@ app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
 
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})
+
+function listFromParse(){
+	var query = new Parse.Query("ListItem");
+	query.equalTo("username", user);
+	// query.include("message");
+	query.find({
+	  success: function(results) {
+	    // results is an array of Parse.Object.
+		var list = "";			
+		for (i = 0; i < results.length; i++) {
+			list += i;
+			list += '. ';
+			list += results[i].get("message");
+			list += '\n';
+
+		}
+		return list;		
+	  },
+	  error: function(error) {
+		return error;		  
+	    // error is an instance of Parse.Error.
+	  }
+	});
+	
+}
+
 app.post('/', function(req,res){
 		
 	var user = req.body.user_id;
@@ -39,45 +68,13 @@ app.post('/', function(req,res){
 		res.send('not implemented');	
 	}
 	else if(text =='what' || text == '') {	
-		
-		var query = new Parse.Query("ListItem");
-		query.equalTo("username", user);
-		// query.include("message");
-		query.find({
-		  success: function(results) {
-		    // results is an array of Parse.Object.
-			var list = "";			
-			for (i = 0; i < results.length; i++) {
-				list += i;
-				list += '. ';
-				list += results[i].get("message");
-				list += '\n';
-
-			}
-			res.send(list);	
-			
-		  },
-
-		  error: function(error) {
-  			res.send(error);	
-			  
-		    // error is an instance of Parse.Error.
-		  }
-		});
-		
-			
-		// collection.comparator = function(object) {
-		//   return object.get('createdAt');
-		// };
-		//
-		// var list = "";
-	
-		
+		res.send(listFromParse());
 	}
 	else if( text =='user') {		
 		res.send(user);	
 	}
-	else if( text =='clear') {		
+	else if( text =='clear') {
+		
 		res.send(user);	
 	}
 	else{
