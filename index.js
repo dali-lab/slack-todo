@@ -54,7 +54,7 @@ app.post('/', function(req,res){
 			list += '\n';
 			 
 		}
-		res.send(list);	
+		res.send(collection.at(0));	
 		
 	}
 	else if( text =='user') {		
