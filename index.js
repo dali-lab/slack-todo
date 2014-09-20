@@ -38,6 +38,7 @@ app.post('/', function(req,res){
 	// 	  model: ListItem
 	// 	});
 		
+		var list;
 		var query = new Parse.Query("ListItem");
 		query.equalTo("username", user);
 		// query.include("message");
