@@ -46,7 +46,7 @@ app.post('/', function(req,res){
 		  success: function(results) {
 		    // results is an array of Parse.Object.			
 			for (i = 0; i < results.length; i++) {
-				list += (i+1);
+				list += i;
 				list += '. ';
 				list += results[i].get("message");
 				list += '\n';
