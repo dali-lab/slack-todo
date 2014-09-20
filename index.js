@@ -5,6 +5,12 @@ var Parse = require('parse').Parse;
 
 Parse.initialize(process.env.PARSE_APP_ID,process.env.PARSE_SECRET);
 
+
+
+
+
+
+
 var bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use( bodyParser.urlencoded() ); // to support URL-encoded bodies
@@ -23,14 +29,22 @@ app.listen(app.get('port'), function() {
 
 app.post('/', function(req,res){
 	
+	
+	var user = req.body.user_id;
+	var text = req.body.text;
+
+	// var query = new Parse.Query(TestObject);
+// 	query.equalTo("username", user);
+	
+ 	
+ 
+	
 	// var TestObject = Parse.Object.extend("Tester");
 	// var testObject = new TestObject();
 	// testObject.save({foo: "baretto"}).then(function(object) {
 	//   alert("yay! it worked");
 	// });
 	
-	var user = req.body.user_id;
-	var text = req.body.text;
 	if( text =='help') {		
 		res.send('/lights commands: on, off, random, very dim, dim, shady, bright, very bright, blue, green, orange, purple, normal, colors, sauron, party, pulse, pulses tv');	
 	}
@@ -38,6 +52,14 @@ app.post('/', function(req,res){
 		res.send(user);	
 	}
 	else{
+ 	
+		var ListItem = Parse.Object.extend("ListItem");
+		var listItem = new ListItem();
+		listItem.save({
+		    username: user,
+		    message: text
+		  });
+	
 		res.send('RAWR');	
 	}
 	
