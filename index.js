@@ -26,15 +26,22 @@ app.post('/', function(req,res){
 	var user = req.body.user_id;
 	var text = req.body.text;
 
-	var Messages = Parse.Collection.extend({
-	  model: ListItem
-	});
+
+
 
 	if( text =='help') {		
 		res.send('not implemented');	
 	}
-	else if(text =='what') {		
-		var collection = new Messages();
+	else if(text =='what') {	
+		
+		var Messages = Parse.Collection.extend({
+		  model: ListItem
+		});
+
+		var query = new Parse.Query(Messages);
+		query.equalTo("username", user);
+		var collection = query.collection();
+			
 		collection.comparator = function(object) {
 		  return object.get('createdAt');
 		};
