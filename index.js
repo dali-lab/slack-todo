@@ -26,6 +26,9 @@ app.post('/', function(req,res){
 	var user = req.body.user_id;
 	var text = req.body.text;
 
+	var Messages = Parse.Collection.extend({
+	  model: ListItem
+	});
 
 	if( text =='help') {		
 		res.send('not implemented');	
@@ -33,7 +36,7 @@ app.post('/', function(req,res){
 	else if(text =='what') {		
 		var collection = new TestCollection();
 		collection.comparator = function(object) {
-		  return object.get("createdAt");
+		  return object.get('createdAt');
 		};
 		
 		var list = "";
