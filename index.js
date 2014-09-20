@@ -28,8 +28,8 @@ app.post('/', function(req,res){
 
 
 	var words = text.split(" ");
-	int firstInt = parseInt(words[0]);
-	bool itemIsDone = words.length ==1 && firstInt != NaN;
+	var firstInt = parseInt(words[0]);
+	var itemIsDone = words.length ==1 && firstInt != NaN;
 
 	if(itemIsDone) {		
 		res.send('DONE');	
