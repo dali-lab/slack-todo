@@ -22,21 +22,6 @@ app.listen(app.get('port'), function() {
 })
 
 
-function sendList(user){
-
-	var results = listForUserFromParse(user);
-	var list = "";			
-	for (i = 0; i < results.length; i++) {
-		list += i;
-		list += '. ';
-		list += results[i].get("message");
-		list += '\n';
-
-	}
-	return list;	
-	// return "test";
-}
-
 function listForUserFromParse(user){
 	
 	var query = new Parse.Query("ListItem");
@@ -45,7 +30,6 @@ function listForUserFromParse(user){
 	query.find({
 	  success: function(results) {
 	    // results is an array of Parse.Object.
-		
 		return results;
 	  },
 
@@ -56,6 +40,21 @@ function listForUserFromParse(user){
 	});
 	
 }
+
+function sendList(user){
+
+	var results = listForUserFromParse(user);
+	var list = "";			
+	for (i = 0; i < results.length; i++) {
+		list += i;
+		list += '. ';
+		list += results[i].get("message");
+		list += '\n';
+	}
+	return list;	
+	// return "test";
+}
+
 
 app.post('/', function(req,res){
 		
