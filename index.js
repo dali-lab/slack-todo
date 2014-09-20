@@ -34,7 +34,7 @@ app.post('/', function(req,res){
 		res.send('not implemented');	
 	}
 	else if(text =='what') {		
-		var collection = new TestCollection();
+		var collection = new Messages();
 		collection.comparator = function(object) {
 		  return object.get('createdAt');
 		};
