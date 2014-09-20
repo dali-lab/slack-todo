@@ -42,18 +42,18 @@ app.post('/', function(req,res){
 		query.equalTo("username", user);
 		var collection = query.collection();
 			
-		collection.comparator = function(object) {
-		  return object.get('createdAt');
-		};
-		
-		var list = "";
-		for (i = 0; i < collection.length; i++) {
-			list += i;
-			list += '. ';
-			list += collection.at(i);
-			list += '\n';
-			 
-		}
+		// collection.comparator = function(object) {
+		//   return object.get('createdAt');
+		// };
+		//
+		// var list = "";
+		// for (i = 0; i < collection.length; i++) {
+		// 	list += i;
+		// 	list += '. ';
+		// 	list += collection.at(i);
+		// 	list += '\n';
+		//
+		// }
 		res.send(collection);	
 		
 	}
