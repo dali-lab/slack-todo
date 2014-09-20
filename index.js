@@ -33,8 +33,7 @@ function sendList(user){
 		list += '\n';
 
 	}
-	res.send(list);		
-	
+	return list;	
 	// return "test";
 }
 
@@ -78,7 +77,7 @@ app.post('/', function(req,res){
 	}
 	else if(text =='what' || text == '') {	
 		
-		res.send(listItemsFromParseForUser(user));
+		res.send(sendList(user));
 		
 	}
 	else if( text =='user') {		
@@ -95,7 +94,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-		res.send(listItemsFromParseForUser(user));	
+		res.send(sendList(user));	
 	}
 	
 });
