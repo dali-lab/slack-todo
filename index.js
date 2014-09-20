@@ -44,7 +44,7 @@ app.post('/', function(req,res){
 			list += '\n';
 			 
 		}
-		res.send('RAWR');	
+		res.send(list);	
 		
 	}
 	else if( text =='user') {		
