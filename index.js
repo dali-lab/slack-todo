@@ -34,14 +34,11 @@ app.post('/', function(req,res){
 	}
 	else if(text =='what') {	
 		
-		var Messages = Parse.Collection.extend({
-		  model: ListItem
-		});
-
-		// var query = new Parse.Query(Messages);
-		// var collection = query.collection();
+		// var Messages = Parse.Collection.extend({
+	// 	  model: ListItem
+	// 	});
 		
-		var query = new Parse.Query(ListItem);
+		var query = new Parse.Query("ListItem");
 		query.equalTo("username", user);
 		query.include("message");
 		query.find({
