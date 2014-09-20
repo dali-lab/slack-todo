@@ -30,7 +30,7 @@ app.post('/', function(req,res){
 	if( text =='help') {		
 		res.send('not implemented');	
 	}
-	else if( text =='what') {		
+	else if(text =='what') {		
 		var collection = new TestCollection();
 		collection.comparator = function(object) {
 		  return object.get("createdAt");
