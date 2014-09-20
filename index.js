@@ -27,16 +27,17 @@ app.post('/', function(req,res){
 	var text = req.body.text;
 
 
+	var words = text.split(" ");
+	int firstInt = parseInt(words[0]);
+	bool itemIsDone = words.length ==1 && firstInt != NaN;
 
-
+	if(itemIsDone) {		
+		res.send('DONE');	
+	}
 	if( text =='help') {		
 		res.send('not implemented');	
 	}
-	else if(text =='what') {	
-		
-		// var Messages = Parse.Collection.extend({
-	// 	  model: ListItem
-	// 	});
+	else if(text =='what' || text == '') {	
 		
 		var query = new Parse.Query("ListItem");
 		query.equalTo("username", user);
