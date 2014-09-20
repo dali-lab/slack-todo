@@ -38,13 +38,12 @@ function listItemsFromParseForUser(user){
 			list += '\n';
 
 		}
-		res.send(list);	
+		return list;
 		
 	  },
 
 	  error: function(error) {
-		res.send(error);	
-		  
+		  return error;
 	    // error is an instance of Parse.Error.
 	  }
 	});
@@ -58,14 +57,13 @@ app.post('/', function(req,res){
 	var user = req.body.user_id;
 	var text = req.body.text;
 
+
 	var words = text.split(" ");
 	var firstInt = parseInt(words[0]);
 	var itemIsDone = (words.length ==1 && firstInt > 0);
 	// res.send(""+// firstInt);
 
-	if(itemIsDone) {	
-		
-		res.send(listItemsFromParseForUser(user));		
+	if(itemIsDone) {		
 		res.send(""+firstInt);	
 	}
 	if( text =='help') {		
