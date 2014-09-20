@@ -32,7 +32,7 @@ app.post('/', function(req,res){
 	var itemIsDone = (words.length ==1 && firstInt > 0);
 
 	if(itemIsDone) {		
-		res.send('DONE');	
+		res.send(firstInt);	
 	}
 	if( text =='help') {		
 		res.send('not implemented');	
