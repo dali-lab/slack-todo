@@ -38,13 +38,13 @@ app.post('/', function(req,res){
 	// 	  model: ListItem
 	// 	});
 		
-		var list;
 		var query = new Parse.Query("ListItem");
 		query.equalTo("username", user);
 		// query.include("message");
 		query.find({
 		  success: function(results) {
-		    // results is an array of Parse.Object.			
+		    // results is an array of Parse.Object.
+			var list = "";			
 			for (i = 0; i < results.length; i++) {
 				list += i;
 				list += '. ';
