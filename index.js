@@ -41,6 +41,17 @@ app.post('/', function(req,res){
 		var query = new Parse.Query(Messages);
 		query.equalTo("username", user);
 		var collection = query.collection();
+		
+		collection.fetch({
+		  success: function(collection) {
+		    collection.each(function(object) {
+		      console.warn(object);
+		    });
+		  },
+		  error: function(collection, error) {
+		    // The collection could not be retrieved.
+		  }
+		});
 			
 		// collection.comparator = function(object) {
 		//   return object.get('createdAt');
