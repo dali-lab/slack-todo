@@ -44,8 +44,15 @@ app.post('/', function(req,res){
 		// query.include("message");
 		query.find({
 		  success: function(results) {
-		    // results is an array of Parse.Object.
-			list = results;	
+		    // results is an array of Parse.Object.			
+			for (i = 0; i < results.length; i++) {
+				list += i+1;
+				list += '. ';
+				list += results[i];
+				list += '\n';
+
+			}
+			res.send(list);	
 			
 		  },
 
@@ -62,14 +69,7 @@ app.post('/', function(req,res){
 		// };
 		//
 		// var list = "";
-		for (i = 0; i < list.length; i++) {
-			list += i+1;
-			list += '. ';
-			list += list[i];
-			list += '\n';
-
-		}
-		res.send(list);	
+	
 		
 	}
 	else if( text =='user') {		
