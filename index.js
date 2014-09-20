@@ -29,11 +29,11 @@ app.post('/', function(req,res){
 
 	var words = text.split(" ");
 	var firstInt = parseInt(words[0]);
-	var itemIsDone = (words.length ==1 && firstInt >= 0);
-	res.send(""+firstInt);	
+	var itemIsDone = (words.length ==1 && firstInt > 0);
+	// res.send(""+// firstInt);
 
 	if(itemIsDone) {		
-		res.send('done');	
+		res.send(""+firstInt);	
 	}
 	if( text =='help') {		
 		res.send('not implemented');	
