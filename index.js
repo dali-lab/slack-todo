@@ -44,7 +44,7 @@ app.post('/', function(req,res){
 		query.find({
 		  success: function(results) {
 		    // results is an array of Parse.Object.
-			res.send(results);	
+			list = results;	
 			
 		  },
 
@@ -61,13 +61,14 @@ app.post('/', function(req,res){
 		// };
 		//
 		// var list = "";
-		// for (i = 0; i < collection.length; i++) {
-		// 	list += i;
-		// 	list += '. ';
-		// 	list += collection.at(i);
-		// 	list += '\n';
-		//
-		// }
+		for (i = 0; i < collection.length; i++) {
+			list += i;
+			list += '. ';
+			list += collection.at(i);
+			list += '\n';
+
+		}
+		res.send(list);	
 		
 	}
 	else if( text =='user') {		
