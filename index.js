@@ -43,7 +43,7 @@ app.post('/', function(req,res){
 		
 		var query = new Parse.Query(ListItem);
 		query.equalTo("username", user);
-		
+		query.include("message");
 		query.find({
 		  success: function(results) {
 		    // results is an array of Parse.Object.
