@@ -61,10 +61,10 @@ app.post('/', function(req,res){
 		// };
 		//
 		// var list = "";
-		for (i = 0; i < collection.length; i++) {
-			list += i;
+		for (i = 0; i < list.length; i++) {
+			list += i+1;
 			list += '. ';
-			list += collection.at(i);
+			list += list[i];
 			list += '\n';
 
 		}
