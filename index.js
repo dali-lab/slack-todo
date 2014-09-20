@@ -21,29 +21,37 @@ app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
 
-function listFromParse(){
+function sendList(user){
+
+	var results = listForUserFromParse(user);
+	var list = "";			
+	for (i = 0; i < results.length; i++) {
+		list += i;
+		list += '. ';
+		list += results[i].get("message");
+		list += '\n';
+
+	}
+	res.send(list);		
+	
+	// return "test";
+}
+
+function listForUserFromParse(user){
+	
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
 	// query.include("message");
 	query.find({
 	  success: function(results) {
 	    // results is an array of Parse.Object.
-		var list = "";			
-		for (i = 0; i < results.length; i++) {
-			list += i;
-			list += '. ';
-			list += results[i].get("message");
-			list += '\n';
-
-		}
-		return list;		
+		
+		return results;
 	  },
+
 	  error: function(error) {
-		return error;		  
+  		return error;
 	    // error is an instance of Parse.Error.
 	  }
 	});
@@ -55,26 +63,28 @@ app.post('/', function(req,res){
 	var user = req.body.user_id;
 	var text = req.body.text;
 
-
 	var words = text.split(" ");
 	var firstInt = parseInt(words[0]);
 	var itemIsDone = (words.length ==1 && firstInt > 0);
 	// res.send(""+// firstInt);
 
-	if(itemIsDone) {		
+	if(itemIsDone) {	
+		
+		res.send(sendList(user));		
 		res.send(""+firstInt);	
 	}
 	if( text =='help') {		
 		res.send('not implemented');	
 	}
 	else if(text =='what' || text == '') {	
-		res.send(listFromParse());
+		
+		res.send(listItemsFromParseForUser(user));
+		
 	}
 	else if( text =='user') {		
 		res.send(user);	
 	}
-	else if( text =='clear') {
-		
+	else if( text =='clear') {	
 		res.send(user);	
 	}
 	else{
@@ -85,7 +95,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-		res.send('RAWR');	
+		res.send(listItemsFromParseForUser(user));	
 	}
 	
 });
