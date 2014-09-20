@@ -49,6 +49,8 @@ app.post('/', function(req,res){
 		  },
 
 		  error: function(error) {
+  			res.send(error);	
+			  
 		    // error is an instance of Parse.Error.
 		  }
 		});
