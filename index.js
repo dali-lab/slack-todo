@@ -48,7 +48,7 @@ app.post('/', function(req,res){
 			for (i = 0; i < results.length; i++) {
 				list += i+1;
 				list += '. ';
-				list += results[i];
+				list += results[i].get("message");
 				list += '\n';
 
 			}
