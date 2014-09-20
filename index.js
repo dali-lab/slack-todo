@@ -38,20 +38,24 @@ app.post('/', function(req,res){
 		  model: ListItem
 		});
 
-		var query = new Parse.Query(Messages);
-		query.equalTo("username", user);
-		var collection = query.collection();
+		// var query = new Parse.Query(Messages);
+		// var collection = query.collection();
 		
-		collection.fetch({
-		  success: function(collection) {
-		    collection.each(function(object) {
-		      console.warn(object);
-		    });
+		var query = new Parse.Query(ListItem);
+		query.equalTo("username", user);
+		
+		query.find({
+		  success: function(results) {
+		    // results is an array of Parse.Object.
+			res.send(results);	
+			
 		  },
-		  error: function(collection, error) {
-		    // The collection could not be retrieved.
+
+		  error: function(error) {
+		    // error is an instance of Parse.Error.
 		  }
 		});
+		
 			
 		// collection.comparator = function(object) {
 		//   return object.get('createdAt');
@@ -65,7 +69,6 @@ app.post('/', function(req,res){
 		// 	list += '\n';
 		//
 		// }
-		res.send(collection);	
 		
 	}
 	else if( text =='user') {		
