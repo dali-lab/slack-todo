@@ -115,7 +115,10 @@ app.post('/', function(req,res){
 	// res.send(""+// firstInt);
 
 	if(itemIsDone) {		
-		res.send(""+firstInt);	
+		
+		deleteItemFromList(user,firstInt);
+		listForUser(user, res);
+		// res.send(""+firstInt);	
 	}
 	else if( text =='help') {		
 		res.send('not implemented');	
@@ -138,7 +141,7 @@ app.post('/', function(req,res){
 	}
 	else if( text =='clear') {	
 		deleteListForUser(user);
-		// listForUser(user,res);
+		listForUser(user,res);
 	}
 	else{
  		//add a new list item with the message and username of the current command
