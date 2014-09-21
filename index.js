@@ -118,7 +118,7 @@ app.post('/', function(req,res){
 	if(itemIsDone) {		
 		
 		deleteItemFromList(user,firstInt);
-		setTimeout(listForUser(user, res), 100);
+		setTimeout(listForUser(user, res), 10000);
 		// res.send(""+firstInt);	
 	}
 	else if( text =='help') {		
@@ -127,7 +127,7 @@ app.post('/', function(req,res){
 	else if(text =='what' || text == '') {	
 		
 	
-		setTimeout(listForUser(user, res), 100);
+		setTimeout(listForUser(user, res), 10000);
 	
 		
 			
@@ -154,7 +154,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-  		setTimeout(listForUser(user, res), 100);
+  		setTimeout(listForUser(user, res), 10000);
 	}
 	
 });
