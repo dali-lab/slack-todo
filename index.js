@@ -129,7 +129,7 @@ app.post('/', function(req,res){
 	}
 	else if(text =='what' || text == '') {	
 		
-		listForUser(user,res);
+		// listForUser(user,res);
 	
 		// setTimeout(listForUser(user, res), 10000);
 	
