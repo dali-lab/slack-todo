@@ -46,7 +46,6 @@ function listForUser(user, res){
 		else{
 		res.send(list);
 		}
-		
 		// res.send(list);	
 	  },
 	  error: function(error) {
@@ -71,8 +70,7 @@ function deleteListForUser(user){
 		for (i = 0; i < results.length; i++) {
 			results[i].destroy();
 		}
-		listForUser(user,res);
-		
+
 		// res.send(list);	
 	  },
 	  error: function(error) {
@@ -94,8 +92,7 @@ function deleteItemFromList(user, index){
 	  success: function(results) {
 	    // results is an array of Parse.Object.		
 		results[index].destroy();
-		listForUser(user,res);
-		
+
 		// res.send(list);	
 	  },
 	  error: function(error) {
@@ -121,7 +118,7 @@ app.post('/', function(req,res){
 	if(itemIsDone) {		
 		
 		deleteItemFromList(user,firstInt);
-		setTimeout(listForUser(user, res), 10000);
+		setTimeout(listForUser(user, res), 3000);
 		// res.send(""+firstInt);	
 	}
 	else if( text =='help') {		
@@ -129,9 +126,8 @@ app.post('/', function(req,res){
 	}
 	else if(text =='what' || text == '') {	
 		
-		listForUser(user,res);
 	
-		// setTimeout(listForUser(user, res), 10000);
+		setTimeout(listForUser(user, res), 3000);
 	
 		
 			
@@ -148,6 +144,7 @@ app.post('/', function(req,res){
 	}
 	else if( text =='clear') {	
 		deleteListForUser(user);
+		listForUser(user,res);
 	}
 	else{
  		//add a new list item with the message and username of the current command
@@ -157,7 +154,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-  		setTimeout(listForUser(user, res), 10000);
+  		setTimeout(listForUser(user, res), 3000);
 	}
 	
 });
