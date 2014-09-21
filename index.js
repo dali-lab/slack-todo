@@ -24,6 +24,7 @@ app.listen(app.get('port'), function() {
 
 function listForUser(user, res){
 
+	
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
 	query.ascending("createdAt");
@@ -126,7 +127,9 @@ app.post('/', function(req,res){
 	else if(text =='what' || text == '') {	
 		
 	
-		listForUser(user, res);
+		setTimeout(listForUser(user, res), 3000);
+	
+		
 			
 		// collection.comparator = function(object) {
 		//   return object.get('createdAt');
