@@ -46,6 +46,7 @@ function listForUser(user, res){
 		else{
 		res.send(list);
 		}
+		
 		// res.send(list);	
 	  },
 	  error: function(error) {
@@ -70,7 +71,8 @@ function deleteListForUser(user){
 		for (i = 0; i < results.length; i++) {
 			results[i].destroy();
 		}
-
+		listForUser(user,res);
+		
 		// res.send(list);	
 	  },
 	  error: function(error) {
