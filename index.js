@@ -22,9 +22,31 @@ app.listen(app.get('port'), function() {
 })
 
 
-// function (){
-//
-// }
+function listForUser(user){
+
+	var query = new Parse.Query("ListItem");
+	query.equalTo("username", user);
+	// query.include("message");
+	query.find({
+	  success: function(results) {
+	    // results is an array of Parse.Object.
+		var list = "";			
+		for (i = 0; i < results.length; i++) {
+			list += i;
+			list += '. ';
+			list += results[i].get("message");
+			list += '\n';
+		}
+		return list;
+		// res.send(list);	
+	  },
+	  error: function(error) {
+		  return error;
+		// res.send(error);
+	    // error is an instance of Parse.Error.
+	  }
+	});
+}
 
 app.post('/', function(req,res){
 		
@@ -45,31 +67,8 @@ app.post('/', function(req,res){
 	}
 	else if(text =='what' || text == '') {	
 		
-		var query = new Parse.Query("ListItem");
-		query.equalTo("username", user);
-		// query.include("message");
-		query.find({
-		  success: function(results) {
-		    // results is an array of Parse.Object.
-			var list = "";			
-			for (i = 0; i < results.length; i++) {
-				list += i;
-				list += '. ';
-				list += results[i].get("message");
-				list += '\n';
-
-			}
-			res.send(list);	
-			
-		  },
-
-		  error: function(error) {
-  			res.send(error);	
-			  
-		    // error is an instance of Parse.Error.
-		  }
-		});
-		
+	
+		res.send(listForUser(user));
 			
 		// collection.comparator = function(object) {
 		//   return object.get('createdAt');
