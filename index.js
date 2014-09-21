@@ -39,7 +39,12 @@ function listForUser(user, res){
 			list += results[i].get("message");
 			list += '\n';
 		}
+		if(results.length == 0){
+			res.send('[empty]');
+		}
+		else{
 		res.send(list);
+		}
 		// res.send(list);	
 	  },
 	  error: function(error) {
