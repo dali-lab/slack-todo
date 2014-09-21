@@ -26,6 +26,8 @@ function listForUser(user, res){
 
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
+	query.ascending("createdAt");
+	
 	// query.include("message");
 	query.find({
 	  success: function(results) {
@@ -53,6 +55,8 @@ function deleteListForUser(user){
 
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
+	query.ascending("createdAt");
+	
 	// query.include("message");
 	query.find({
 	  success: function(results) {
