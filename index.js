@@ -22,7 +22,7 @@ app.listen(app.get('port'), function() {
 })
 
 
-function listForUser(user){
+function listForUser(user, res){
 
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
@@ -37,11 +37,11 @@ function listForUser(user){
 			list += results[i].get("message");
 			list += '\n';
 		}
-		return list;
+		res.send(list);
 		// res.send(list);	
 	  },
 	  error: function(error) {
-		  return error;
+		  res.send(error);
 		// res.send(error);
 	    // error is an instance of Parse.Error.
 	  }
@@ -68,7 +68,7 @@ app.post('/', function(req,res){
 	else if(text =='what' || text == '') {	
 		
 	
-		res.send(listForUser(user));
+		listForUser(user, res);
 			
 		// collection.comparator = function(object) {
 		//   return object.get('createdAt');
