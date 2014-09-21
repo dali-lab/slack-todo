@@ -107,7 +107,7 @@ app.post('/', function(req,res){
 	}
 	else if( text =='clear') {	
 		deleteListForUser(user);
-		listForUser(user,res);
+		// listForUser(user,res);
 	}
 	else{
  		//add a new list item with the message and username of the current command
@@ -117,7 +117,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-		res.send('RAWR');	
+		listForUser(user,res);	
 	}
 	
 });
