@@ -48,6 +48,30 @@ function listForUser(user, res){
 	});
 }
 
+
+function deleteListForUser(user, res){
+
+	var query = new Parse.Query("ListItem");
+	query.equalTo("username", user);
+	// query.include("message");
+	query.find({
+	  success: function(results) {
+	    // results is an array of Parse.Object.
+		var list = "";			
+		for (i = 0; i < results.length; i++) {
+			results[i].destroy();
+		}
+
+		// res.send(list);	
+	  },
+	  error: function(error) {
+
+		// res.send(error);
+	    // error is an instance of Parse.Error.
+	  }
+	});
+}
+
 app.post('/', function(req,res){
 		
 	var user = req.body.user_id;
@@ -82,7 +106,8 @@ app.post('/', function(req,res){
 		res.send(user);	
 	}
 	else if( text =='clear') {	
-		res.send(user);	
+		deleteListForUser();
+		listForUser();
 	}
 	else{
  		//add a new list item with the message and username of the current command
