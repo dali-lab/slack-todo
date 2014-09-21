@@ -49,7 +49,7 @@ function listForUser(user, res){
 }
 
 
-function deleteListForUser(user, res){
+function deleteListForUser(user){
 
 	var query = new Parse.Query("ListItem");
 	query.equalTo("username", user);
@@ -106,8 +106,8 @@ app.post('/', function(req,res){
 		res.send(user);	
 	}
 	else if( text =='clear') {	
-		deleteListForUser();
-		listForUser();
+		deleteListForUser(user);
+		listForUser(user,res);
 	}
 	else{
  		//add a new list item with the message and username of the current command
