@@ -66,7 +66,6 @@ function deleteListForUser(user){
 	query.find({
 	  success: function(results) {
 	    // results is an array of Parse.Object.
-		var list = "";			
 		for (i = 0; i < results.length; i++) {
 			results[i].destroy();
 		}
@@ -80,6 +79,29 @@ function deleteListForUser(user){
 	  }
 	});
 }
+
+function deleteItemFromList(user, index){
+
+	var query = new Parse.Query("ListItem");
+	query.equalTo("username", user);
+	query.ascending("createdAt");
+	
+	// query.include("message");
+	query.find({
+	  success: function(results) {
+	    // results is an array of Parse.Object.		
+		results[index].destroy();
+
+		// res.send(list);	
+	  },
+	  error: function(error) {
+
+		// res.send(error);
+	    // error is an instance of Parse.Error.
+	  }
+	});
+}
+
 
 app.post('/', function(req,res){
 		
@@ -95,7 +117,7 @@ app.post('/', function(req,res){
 	if(itemIsDone) {		
 		res.send(""+firstInt);	
 	}
-	if( text =='help') {		
+	else if( text =='help') {		
 		res.send('not implemented');	
 	}
 	else if(text =='what' || text == '') {	
