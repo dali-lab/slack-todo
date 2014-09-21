@@ -118,8 +118,7 @@ app.post('/', function(req,res){
 	if(itemIsDone) {		
 		
 		deleteItemFromList(user,firstInt);
-		setTimeout(listForUser(user, res), 3000);
-		// res.send(""+firstInt);	
+		listForUser(user, res);
 	}
 	else if( text =='help') {		
 		res.send('not implemented');	
@@ -127,15 +126,7 @@ app.post('/', function(req,res){
 	else if(text =='what' || text == '') {	
 		
 	
-		setTimeout(listForUser(user, res), 3000);
-	
-		
-			
-		// collection.comparator = function(object) {
-		//   return object.get('createdAt');
-		// };
-		//
-		// var list = "";
+		listForUser(user, res);
 	
 		
 	}
@@ -154,7 +145,7 @@ app.post('/', function(req,res){
 		    username: user,
 		    message: text
 		  });
-  		setTimeout(listForUser(user, res), 3000);
+  		listForUser(user, res);
 	}
 	
 });
