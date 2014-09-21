@@ -92,7 +92,8 @@ function deleteItemFromList(user, index){
 	  success: function(results) {
 	    // results is an array of Parse.Object.		
 		results[index].destroy();
-
+		listForUser(user,res);
+		
 		// res.send(list);	
 	  },
 	  error: function(error) {
@@ -127,7 +128,7 @@ app.post('/', function(req,res){
 	else if(text =='what' || text == '') {	
 		
 	
-		setTimeout(listForUser(user, res), 10000);
+		// setTimeout(listForUser(user, res), 10000);
 	
 		
 			
@@ -144,7 +145,6 @@ app.post('/', function(req,res){
 	}
 	else if( text =='clear') {	
 		deleteListForUser(user);
-		listForUser(user,res);
 	}
 	else{
  		//add a new list item with the message and username of the current command
